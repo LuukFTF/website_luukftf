@@ -1,0 +1,72 @@
+body {
+    background-color: #000000;
+    color: #d3dede;
+    font-family: 'Arial';
+    margin: 0;
+    padding: 0;
+}
+
+
+.page {
+    background-color: #15000a;
+    display: block;
+
+    margin: auto;
+
+    padding: 100px;
+
+    width: 1000px;
+    height: auto;
+}
+
+.pageHeader {
+    background-color: #313737;
+    display: block;
+
+    margin-right: 10px;
+    margin-left: 10px;
+
+    padding: 10px;
+
+    width: 100%;
+    height: auto;
+}
+
+.pageContent {
+    background-color: #2a2a2a;
+    display: block;
+
+    margin-right: 10px;
+    margin-left: 10px;
+
+    padding: 10px;
+
+    width: 100%;
+    height: auto;
+}
+
+.pageFooter {
+    background-color: #313737;
+    display: block;
+
+    margin-right: 10px;
+    margin-left: 10px;
+
+    padding: 10px;
+
+    width: 100%;
+    height: auto;
+}
+
+.test {
+    background-color: #313737;
+    display: block;
+
+    margin-right: 10px;
+    margin-left: 10px;
+
+    padding: 10px;
+
+    width: 100%;
+    height: auto;
+}
