@@ -7,7 +7,7 @@ body {
 }
 
 
-.page {
+page {
     background-color: #15000a;
     display: block;
 
@@ -15,16 +15,16 @@ body {
 
     padding: 100px;
 
-    width: 1000px;
+    width: 70%;
     height: auto;
+    min-height: 70vh;
 }
 
-.pageHeader {
+header {
     background-color: #313737;
     display: block;
 
-    margin-right: 10px;
-    margin-left: 10px;
+    margin: auto;
 
     padding: 10px;
 
@@ -32,12 +32,12 @@ body {
     height: auto;
 }
 
-.pageContent {
+main {
     background-color: #2a2a2a;
     display: block;
 
-    margin-right: 10px;
-    margin-left: 10px;
+    margin: auto;
+
 
     padding: 10px;
 
@@ -45,12 +45,11 @@ body {
     height: auto;
 }
 
-.pageFooter {
+footer {
     background-color: #313737;
-    display: block;
+    display: inline-block;
 
-    margin-right: 10px;
-    margin-left: 10px;
+    margin: auto;
 
     padding: 10px;
 
@@ -58,12 +57,16 @@ body {
     height: auto;
 }
 
-.test {
+
+
+
+test {
     background-color: #313737;
     display: block;
 
-    margin-right: 10px;
-    margin-left: 10px;
+    margin: auto;
+
+    border-style: solid;
 
     padding: 10px;
 
