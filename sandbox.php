@@ -82,9 +82,17 @@
 
 <h1>PHP Test Code below:</h1>
 
-<?php
-echo "My first PHP script!";
-?>
+<p><?php
+    echo "My first PHP script!";
+?></p>
+
+
+<p><?php
+    echo 'Hello World!';
+?></p>
+
+
+
 
 
 </body>
