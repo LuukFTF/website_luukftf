@@ -13,6 +13,10 @@ a {
     text-align: center;
 }
 
+h1 {
+    font-size: 60px;
+}
+
 .menu {
     display: flex;
 }
@@ -62,4 +66,9 @@ footer {
     width: calc(100% - 2 * 10px);
     height: auto;
 
+}
+
+
+.abc {
+    font-size: 500%;
 }
