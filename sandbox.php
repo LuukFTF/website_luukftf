@@ -26,57 +26,65 @@
         </ul>
     </nav>
 </header>
-    <h1>Header 1</h1>
-    <h2>Header 2</h2>
-    <h3>Header 3</h3>
-    <h4>Header 4</h4>
-    <h5>Header 5</h5>
-    <h6>Header 6</h6>
-    <h7>Header 7</h7>
-    <h10>Header 10</h10>
-    <h100>Header 100</h100>
-    <h1000>Header 1000</h1000>
 
-    <p>hello <br>Next line <br> jo</p>
-    <p>JO</p>
+<h1>HTML Test Code below:</h1>
 
-    <p>Hello <em>wow</em> this is <b>cool</b></p>
+<h1>Header 1</h1>
+<h2>Header 2</h2>
+<h3>Header 3</h3>
+<h4>Header 4</h4>
+<h5>Header 5</h5>
+<h6>Header 6</h6>
+<h7>Header 7</h7>
+<h10>Header 10</h10>
+<h100>Header 100</h100>
+<h1000>Header 1000</h1000>
 
-    <p><button>Click me</button></p>
-    <p>Test <mark>mark</mark> </p>
+<p>hello <br>Next line <br> jo</p>
+<p>JO</p>
 
+
+<p>Hello <em>wow</em> this is <b>cool</b></p>
+
+<p><button>Click me</button></p>
+<p>Test <mark>mark</mark> </p>
+
+<ul>
+    <li>Coffee</li>
     <ul>
-        <li>Coffee</li>
+        <li>Black</li>
+        <li>House</li>
         <ul>
-            <li>Black</li>
-            <li>House</li>
-            <ul>
-                <li>Normal</li>
-                <li>Christmas</li>
-            </ul>
-            <li>Cappuccino</li>
+            <li>Normal</li>
+            <li>Christmas</li>
         </ul>
-        <li>Tea</li>
-        <li>Milk</li>
-        <li>Sugar</li>
+        <li>Cappuccino</li>
     </ul>
+    <li>Tea</li>
+    <li>Milk</li>
+    <li>Sugar</li>
+</ul>
 
-    <ol>
-        <li>Coffee</li>
-        <ul>
-            <li>luuk's</li>
-            <ol>Black</ol>
-            <ol>Normal</ol>
-            <li>peter's</li>
-            <ol>Cappuccino</ol>
-            <ol>Normal</ol>
-        </ul>
-        <li>Tea</li>
-        <li>Milk</li>
-        <li>Salt</li>
-    </ol>
+<ol>
+    <li>Coffee</li>
+    <ul>
+        <li>luuk's</li>
+        <ol>Black</ol>
+        <ol>Normal</ol>
+        <li>peter's</li>
+        <ol>Cappuccino</ol>
+        <ol>Normal</ol>
+    </ul>
+    <li>Tea</li>
+    <li>Milk</li>
+    <li>Salt</li>
+</ol>
 
+<h1>PHP Test Code below:</h1>
 
+<?php
+echo "My first PHP script!";
+?>
 
 
 </body>
