@@ -3,8 +3,11 @@ $defaultArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 69, 11100];
 
 $a = 'hello world';
 $virtualworlds = ['Matrix', 'Simulation', 'Minecraft World', 'Coma', 'Eternity', '42', 'Universe', 'Illusion', 'Mirage'];
-$name = ['Luuk', 'Peter', 'Pascal', 'Bruh', 'Noel'];
+$name = ['LuukFTF' => 'Luuk', 'peter69' => 'Peter', 'pascal' => 'Pascal', 'bruh' => 'Bruh', 'noel' => 'Noel'];
 $user = ['LuukFTF', 'peter69', 'pascal', 'bruh', 'noel'];
+$age = ["Peter" => "35", "Ben" => "37", "Joe" => "43"];
+$b = [["1"], ["2"]];
+$c = [["1" => "A"], ["2" => "B"]];
 ?>
 
 
@@ -190,8 +193,35 @@ $user = ['LuukFTF', 'peter69', 'pascal', 'bruh', 'noel'];
         for ($i = 0; $i < count($defaultArray); $i++) {
             echo "<p>".$defaultArray[$i]."<p>";
         }
+
+
+        $associativeArray = [
+        'eerste' => 'Wijn',
+        'tweede' => 'haven',
+        ' ',
+        99
+        ];
+
+
+        foreach ($name as $item => $b) {
+            echo $item.$b;
+            echo "<br>";
+            
+        }
+
+
+
+        foreach ($age as $x => $x_value) {
+            echo "Key=" . $x . ", Value=" . $x_value;
+            echo "<br>";
+        }
+
+        
+        
+
         ?>
 
+        <p><?php print_r($associativeArray); ?></p>
 
 
 
