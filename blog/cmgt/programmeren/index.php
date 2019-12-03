@@ -26,5 +26,6 @@
     </nav>
 </header>
 <p><a href="week1.php">week1</a></p>
+<p><a href="musiccollection.php">musiccollection</a></p>
 </body>
 </html>
