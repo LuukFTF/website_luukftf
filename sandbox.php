@@ -91,9 +91,46 @@
     echo 'Hello World!';
 ?></p>
 
+<input type="checkbox" name="test" value="on">
+<p></p>
+<input type="radio" name="group" value="option1">1
+<input type="radio" name="group" value="option2">2
+<p></p>
+<select name="list">
+    <option value="item1">one</option>
+    <option value="item2">two</option>
+    <option value="item2">three</option>
+</select>
+<p></p>
+<select multiple name="list[]">
+    <option value="item1">one</option>
+    <option value="item2">two</option>
+    <option value="item2">three</option>
+</select>
+
+<p></p>
+
+<?php
+if (isset($_POST['searchterm'])) {
+    echo htmlspecialchars($_POST['searchterm'], ENT_QUOTES);
+}
+?>
 
 
+<form
+    action=""
+    method="post">
+    Username: <input type="text" name="name">
+    Password: <input type="password" value="password">
+
+</form>
 
 
 </body>
 </html>
+
+
+
+
+
+
