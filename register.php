@@ -1,3 +1,67 @@
+<?php
+
+$name = '';
+$password = '';
+$gender = '';
+$color = '';
+$massage_type = '';
+$languages = [];
+$comments = '';
+$tc = '';
+
+
+if (isset($_POST['submit'])) {
+    if (isset($_POST['name'])) {
+        $name = $_POST['name'];
+    };
+    if (isset($_POST['password'])) {
+        $password = $_POST['password'];
+    };
+    if (isset($_POST['gender'])) {
+        $gender = $_POST['gender'];
+    };
+    if (isset($_POST['color'])) {
+        $color = $_POST['color'];
+    };
+    if (isset($_POST['languages'])) {
+        $languages = $_POST['languages'];
+    };
+    if (isset($_POST['massage_type'])) {
+        $massage_type = $_POST['massage_type'];
+    };
+    if (isset($_POST['comments'])) {
+        $comments = $_POST['comments'];
+    };
+    if (isset($_POST['tc'])) {
+        $tc = $_POST['tc'];
+    };
+
+}
+
+
+$db = new mysqli(
+    'localhost',
+    'root',
+    '',
+    'test_course');
+
+$sql = sprintf(
+    "INSERT INTO users (name, gender, color) VALUES ('%s', '%s', '%s')",
+    $db->real_escape_string($name),
+    $db->real_escape_string($gender),
+    $db->real_escape_string($color));
+
+$db->query($sql);
+
+echo '<p>done</p>';
+
+$db->close();
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,44 +94,8 @@
         <div class="container page">
 
 
-    <?php
-    $name = '';
-    $password = '';
-    $gender = '';
-    $color = '';
-    $massage_type = '';
-    $languages = [];
-    $comments = '';
-    $tc = '';
-
-
-    if (isset($_POST['submit'])) {
-        if (isset($_POST['name'])) {
-            $name = $_POST['name'];
-        };
-        if (isset($_POST['password'])) {
-            $password = $_POST['password'];
-        };
-        if (isset($_POST['gender'])) {
-            $gender = $_POST['gender'];
-        };
-        if (isset($_POST['color'])) {
-            $color = $_POST['color'];
-        };
-        if (isset($_POST['languages'])) {
-            $languages = $_POST['languages'];
-        };
-        if (isset($_POST['massage_type'])) {
-            $massage_type = $_POST['massage_type'];
-        };
-        if (isset($_POST['comments'])) {
-            $comments = $_POST['comments'];
-        };
-        if (isset($_POST['tc'])) {
-            $tc = $_POST['tc'];
-        };
-
-        printf('Username: %s
+            <?php
+            printf('Username: %s
             <br>Password: %s
             <br>Gender: %s
             <br>Color: %s
@@ -84,8 +112,7 @@
             htmlspecialchars($comments, ENT_QUOTES),
             htmlspecialchars($tc, ENT_QUOTES)
             );
-    }
-    ?>
+            ?>
 
             <form
                 action=""
