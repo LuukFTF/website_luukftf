@@ -1,7 +1,7 @@
 <?php
 //Multi dimensional array with the music collection data
 $x = 0;
-$listOrder = ['#', 'Artist', 'Album', 'Year', 'Track', 'Views'];
+$listOrder = ['#', 'Artist', 'Album', 'Year', 'Track', 'Views', 'Length'];
 $musicAlbums = [
     [
         '#' => 1,
@@ -10,6 +10,8 @@ $musicAlbums = [
         'Album' => 'Torches',
         'Year' => 2011,
         'Views'=> 400000000,
+        'Length'=> 4,
+
     ],
     [
         '#' => 2,
@@ -18,6 +20,7 @@ $musicAlbums = [
         'Album' => "Astro Lounge",
         'Year' => 1999,
         'Views'=> 480000000,
+        'Length'=> 3,
     ],
     [
         '#' => 3,
@@ -25,23 +28,71 @@ $musicAlbums = [
         'Track' => "Macintosh Plus",
         'Album' => "Floral Shoppe",
         'Year' => 2011,
-        'Views'=> 0,
+        'Views'=> 3000000,
+        'Length'=> 7,
     ],
     [
-        '#' => 3,
+        '#' => 4,
         'Artist' => "Shanguy",
         'Track' => "King of the Jungle",
         'Album' => "King of the Jungle",
         'Year' => 2018,
-        'Views'=> 10600000,
+        'Views'=> 11000000,
+        'Length'=> 2.7,
     ],
     [
-        '#' => 3,
+        '#' => 5,
         'Artist' => "333ak",
-        'Track' => "Smoke",
+        'Track' => "Void",
         'Album' => "Droned Adventures",
         'Year' => 2019,
         'Views'=> "<1000",
+        'Length'=> 3.3,
+    ],
+    [
+        '#' => 6,
+        'Artist' => "Muse",
+        'Track' => "Psycho",
+        'Album' => "Drones",
+        'Year' => 2015,
+        'Views'=> "123000000",
+        'Length'=> 5.3,
+    ],
+    [
+        '#' => 7,
+        'Artist' => "Avicii",
+        'Track' => "The Nights",
+        'Album' => "The Nights",
+        'Year' => 2014,
+        'Views'=> "500000000",
+        'Length'=> 2.9,
+    ],
+    [
+        '#' => 8,
+        'Artist' => "Joost",
+        'Track' => "Joost Klein 2",
+        'Album' => "1983",
+        'Year' => 2019,
+        'Views'=> "800000",
+        'Length'=> 2.1,
+    ],
+    [
+        '#' => 9,
+        'Artist' => "MGMT",
+        'Track' => "Electric Feel",
+        'Album' => "Oracular Spectacular",
+        'Year' => 2007,
+        'Views'=> "300000000",
+        'Length'=> 3.8,
+    ],
+    [
+        '#' => 10,
+        'Artist' => "De Staat",
+        'Track' => "Tie Me Down",
+        'Album' => "Bubble Gum",
+        'Year' => 2019,
+        'Views'=> "700000",
+        'Length'=> 2.1,
     ],
 ];
 
@@ -51,6 +102,7 @@ $musicAlbums = [
 <head>
     <meta charset="UTF-8">
     <link href="/css/main.css" type="text/css" rel="stylesheet">
+    <link href="music_collection.css" type="text/css" rel="stylesheet">
     <title>LuukFTF's Website</title>
 </head>
 <body>
@@ -80,9 +132,10 @@ $musicAlbums = [
             <th>#</th>
             <th>Artist</th>
             <th>Track</th>
-            <th>Albumr</th>
+            <th>Album</th>
             <th>Year</th>
             <th>Spotify Plays</th>
+            <th>Length</th>
         </tr>
         </thead>
         <body>
@@ -94,6 +147,7 @@ $musicAlbums = [
                 <td><?= $item['Album'] ?></td>
                 <td><?= $item['Year'] ?></td>
                 <td><?= $item['Views'] ?></td>
+                <td><?= $item['Length'] ?></td>
             </tr>
             <?php endforeach; ?>
         </body>
