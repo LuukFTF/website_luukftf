@@ -153,7 +153,7 @@ $musicAlbums = [
         </body>
         <tfoot>
         <tr>
-            <td colspan="6">&copy; My Music Collection</td>
+            <td colspan="7">&copy; My Music Collection</td>
         </tr>
         </tfoot>
     </table>
