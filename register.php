@@ -35,7 +35,6 @@ if (isset($_POST['submit'])) {
     if (isset($_POST['tc'])) {
         $tc = $_POST['tc'];
     };
-
 }
 
 
@@ -153,9 +152,6 @@ $db->close();
     </main>
 
     <footer class="footer">
-        <h1>Footer</h1>
-        <span>Test</span>
-        <p>Bye World!</p>
     </footer>
 </body>
 </html>
