@@ -128,8 +128,7 @@ if (isset($_POST['submit'])) {
             htmlspecialchars($track, ENT_QUOTES),
             htmlspecialchars($album, ENT_QUOTES),
             htmlspecialchars($year, ENT_QUOTES),
-            htmlspecialchars($views, ENT_QUOTES),
-                htmlspecialchars($length, ENT_QUOTES),
+            htmlspecialchars($views, ENT_QUOTES), htmlspecialchars($length, ENT_QUOTES),
             htmlspecialchars($comments, ENT_QUOTES),
             htmlspecialchars($tc, ENT_QUOTES)
         );}

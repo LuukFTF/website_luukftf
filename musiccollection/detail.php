@@ -162,13 +162,13 @@ $musicAlbums = [
             <h2>%s Minutes</h2>
             ',
             $id,
-            $musicAlbums[$id]['Artist'],
-            $musicAlbums[$id]['Track'],
-            $musicAlbums[$id]['Album'],
-            $musicAlbums[$id]['Year'],
-            $musicAlbums[$id]['Views'],
-            $musicAlbums[$id]['Length'],
-        )?>
+            htmlspecialchars($musicAlbums[$id]['Artist'], ENT_QUOTES),
+            htmlspecialchars($musicAlbums[$id]['Track'], ENT_QUOTES),
+            htmlspecialchars($musicAlbums[$id]['Album'], ENT_QUOTES),
+            htmlspecialchars($musicAlbums[$id]['Year'], ENT_QUOTES),
+            htmlspecialchars($musicAlbums[$id]['Views'], ENT_QUOTES),
+            htmlspecialchars($musicAlbums[$id]['Length'], ENT_QUOTES)
+        ); ?>
     </div>
 
 
