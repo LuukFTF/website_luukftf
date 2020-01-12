@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <link href="/css/main.css" type="text/css" rel="stylesheet">
+    <link href="music_collection.css" type="text/css" rel="stylesheet">
     <title>LuukFTF's Website</title>
 </head>
 <body>
-
 <header class="header">
     <nav>
         <ul class="menu">
@@ -21,11 +21,17 @@
             <li class="menu-item"><a href="/test.html">Test</a></li>
             <li class="menu-item"><a href="/test.html">Test</a></li>
             <li class="menu-item"><a href="/test.html">Test</a></li>
-
         </ul>
     </nav>
 </header>
-<p><a href="week1.php">week1</a></p>
-<p><a href="musiccollection.php">musiccollection</a></p>
+
+<main>
+
+</main>
+
+
+
+
+
 </body>
 </html>
