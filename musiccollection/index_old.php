@@ -103,37 +103,6 @@ $musicAlbums = [
         'Length'=> 2.1,
     ],
 ];
-
-
-//variables
-$artist = '';
-$track = '';
-$album = '';
-$year = '';
-$views = '';
-$length = '';
-$comments = '';
-$tc = '';
-
-/*
-$db = new mysqli(
-    'localhost',
-    'root',
-    '',
-    'musiccollection');
-
-
-$sql = sprintf("
-    INSERT INTO albums (track, album) VALUES (
-    '%s', '%s')",
-    $db->$track,
-    $db->$album);
-
-$db->query($sql);
-
-$db->close();
-*/
-
 ?>
 
 <!DOCTYPE html>

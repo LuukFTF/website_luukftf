@@ -17,8 +17,6 @@
     </data-source>
     <data-source name="musiccollection@localhost" uuid="90f5d4ee-525b-4ed2-af42-460d59922b41">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
-      <secret-storage>master_key</secret-storage>
-      <user-name>root</user-name>
       <schema-mapping />
     </data-source>
   </component>
