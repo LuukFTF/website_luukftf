@@ -1,116 +1,36 @@
 <?php
-    // ?id=1
-    if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
-        $id = $_GET['id'];
-    } else {
-        header('location: index.php');
-    }
+// ?id=1
+if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
+    $id = $_GET['id'];
+} else {
+    header('location: index.php');
+}
 
 
-//Multi dimensional array with the music collection data
-$x = 0;
-$listOrder = ['id', 'Artist', 'Album', 'Year', 'Track', 'Views', 'Length'];
-$musicAlbums = [
-    [
-        'id' => 0,
-        'Artist' => 'Rick Astley',
-        'Track' => 'Never Gonna Give You Up',
-        'Album' => 'You Need Somebody',
-        'Year' => 1987,
-        'Views' => 200000000,
-        'Length' => 3,
-    ],
-    [
-        'id' => 1,
-        'Artist' => 'Foster The People',
-        'Track' => 'Pumped Up Kicks',
-        'Album' => 'Torches',
-        'Year' => 2011,
-        'Views' => 400000000,
-        'Length' => 4,
-    ],
-    [
-        'id' => 2,
-        'Artist' => "Smash Mouth",
-        'Track' => "All Star",
-        'Album' => "Astro Lounge",
-        'Year' => 1999,
-        'Views' => 480000000,
-        'Length' => 3,
-    ],
-    [
-        'id' => 3,
-        'Artist' => "Vektroid",
-        'Track' => "Macintosh Plus",
-        'Album' => "Floral Shoppe",
-        'Year' => 2011,
-        'Views' => 3000000,
-        'Length' => 7,
-    ],
-    [
-        'id' => 4,
-        'Artist' => "Shanguy",
-        'Track' => "King of the Jungle",
-        'Album' => "King of the Jungle",
-        'Year' => 2018,
-        'Views' => 11000000,
-        'Length' => 2.7,
-    ],
-    [
-        'id' => 5,
-        'Artist' => "333ak",
-        'Track' => "Void",
-        'Album' => "Droned Adventures",
-        'Year' => 2019,
-        'Views' => "<1000",
-        'Length' => 3.3,
-    ],
-    [
-        'id' => 6,
-        'Artist' => "Muse",
-        'Track' => "Psycho",
-        'Album' => "Drones",
-        'Year' => 2015,
-        'Views' => "123000000",
-        'Length' => 5.3,
-    ],
-    [
-        'id' => 7,
-        'Artist' => "Avicii",
-        'Track' => "The Nights",
-        'Album' => "The Nights",
-        'Year' => 2014,
-        'Views' => "500000000",
-        'Length' => 2.9,
-    ],
-    [
-        'id' => 8,
-        'Artist' => "Joost",
-        'Track' => "Joost Klein 2",
-        'Album' => "1983",
-        'Year' => 2019,
-        'Views' => "800000",
-        'Length' => 2.1,
-    ],
-    [
-        'id' => 9,
-        'Artist' => "MGMT",
-        'Track' => "Electric Feel",
-        'Album' => "Oracular Spectacular",
-        'Year' => 2007,
-        'Views' => "300000000",
-        'Length' => 3.8,
-    ],
-    [
-        'id' => 10,
-        'Artist' => "De Staat",
-        'Track' => "Tie Me Down",
-        'Album' => "Bubble Gum",
-        'Year' => 2019,
-        'Views' => "700000",
-        'Length' => 2.1,
-    ],
-];
+//sql database
+
+if(!isset($_GET['id'])) {
+    echo 'SQL ERROR NO ID IN URL';
+}
+
+$dbConnection =  mysqli_connect(
+    'localhost',
+    'root',
+    '',
+    'musiccolletion');
+
+$id = $_GET['id'];
+
+$query = "
+SELECT * 
+FROM albums 
+WHERE id=$id
+";
+
+$result = mysqli_query($dbConnection, $query)
+or die('Error in query: '.$query);
+
+$album =  mysqli_fetch_assoc($result);
 
 
 ?>
@@ -160,14 +80,17 @@ $musicAlbums = [
             <h2>%s Plays</h2>
             <p>Length</p>
             <h2>%s Minutes</h2>
+            <p>Date Created</p>
+            <h2>%s</h2>
             ',
             $id,
-            htmlspecialchars($musicAlbums[$id]['Artist'], ENT_QUOTES),
-            htmlspecialchars($musicAlbums[$id]['Track'], ENT_QUOTES),
-            htmlspecialchars($musicAlbums[$id]['Album'], ENT_QUOTES),
-            htmlspecialchars($musicAlbums[$id]['Year'], ENT_QUOTES),
-            htmlspecialchars($musicAlbums[$id]['Views'], ENT_QUOTES),
-            htmlspecialchars($musicAlbums[$id]['Length'], ENT_QUOTES)
+            htmlspecialchars($album['artist'], ENT_QUOTES),
+            htmlspecialchars($album['track'], ENT_QUOTES),
+            htmlspecialchars($album['album'], ENT_QUOTES),
+            htmlspecialchars($album['year'], ENT_QUOTES),
+            htmlspecialchars($album['views'], ENT_QUOTES),
+            htmlspecialchars($album['length'], ENT_QUOTES),
+            htmlspecialchars($album['date_created'], ENT_QUOTES)
         ); ?>
     </div>
 

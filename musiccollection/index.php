@@ -1,139 +1,30 @@
 <?php
-//Multi dimensional array with the music collection data
-$x = 0;
-$listOrder = ['id', 'Artist', 'Album', 'Year', 'Track', 'Views', 'Length'];
-$musicAlbums = [
-    [
-        'id' => 0,
-        'Artist' => 'Rick Astley',
-        'Track' => 'Never Gonna Give You Up',
-        'Album' => 'You Need Somebody',
-        'Year' => 1987,
-        'Views' => 200000000,
-        'Length' => 3,
-    ],
-    [
-        'id' => 1,
-        'Artist' => 'Foster The People',
-        'Track' => 'Pumped Up Kicks',
-        'Album' => 'Torches',
-        'Year' => 2011,
-        'Views'=> 400000000,
-        'Length'=> 4,
-    ],
-    [
-        'id' => 2,
-        'Artist' => "Smash Mouth",
-        'Track' => "All Star",
-        'Album' => "Astro Lounge",
-        'Year' => 1999,
-        'Views'=> 480000000,
-        'Length'=> 3,
-    ],
-    [
-        'id' => 3,
-        'Artist' => "Vektroid",
-        'Track' => "Macintosh Plus",
-        'Album' => "Floral Shoppe",
-        'Year' => 2011,
-        'Views'=> 3000000,
-        'Length'=> 7,
-    ],
-    [
-        'id' => 4,
-        'Artist' => "Shanguy",
-        'Track' => "King of the Jungle",
-        'Album' => "King of the Jungle",
-        'Year' => 2018,
-        'Views'=> 11000000,
-        'Length'=> 2.7,
-    ],
-    [
-        'id' => 5,
-        'Artist' => "333ak",
-        'Track' => "Void",
-        'Album' => "Droned Adventures",
-        'Year' => 2019,
-        'Views'=> "<1000",
-        'Length'=> 3.3,
-    ],
-    [
-        'id' => 6,
-        'Artist' => "Muse",
-        'Track' => "Psycho",
-        'Album' => "Drones",
-        'Year' => 2015,
-        'Views'=> "123000000",
-        'Length'=> 5.3,
-    ],
-    [
-        'id' => 7,
-        'Artist' => "Avicii",
-        'Track' => "The Nights",
-        'Album' => "The Nights",
-        'Year' => 2014,
-        'Views'=> "500000000",
-        'Length'=> 2.9,
-    ],
-    [
-        'id' => 8,
-        'Artist' => "Joost",
-        'Track' => "Joost Klein 2",
-        'Album' => "1983",
-        'Year' => 2019,
-        'Views'=> "800000",
-        'Length'=> 2.1,
-    ],
-    [
-        'id' => 9,
-        'Artist' => "MGMT",
-        'Track' => "Electric Feel",
-        'Album' => "Oracular Spectacular",
-        'Year' => 2007,
-        'Views'=> "300000000",
-        'Length'=> 3.8,
-    ],
-    [
-        'id' => 10,
-        'Artist' => "De Staat",
-        'Track' => "Tie Me Down",
-        'Album' => "Bubble Gum",
-        'Year' => 2019,
-        'Views'=> "700000",
-        'Length'=> 2.1,
-    ],
-];
-
-
-//variables
-$artist = '';
-$track = '';
-$album = '';
-$year = '';
-$views = '';
-$length = '';
-$comments = '';
-$tc = '';
-
-/*
-$db = new mysqli(
+//sql database
+$db =  mysqli_connect(
     'localhost',
     'root',
     '',
-    'musiccollection');
+    'musiccolletion');
 
+$query = "
+SELECT * 
+FROM albums 
+";
 
-$sql = sprintf("
-    INSERT INTO albums (track, album) VALUES (
-    '%s', '%s')",
-    $db->$track,
-    $db->$album);
+$result = mysqli_query($db, $query)
+or die('Error '.mysqli_error($db).' with query '.$query);
 
-$db->query($sql);
+$albums = [];
 
-$db->close();
-*/
+while($row = mysqli_fetch_assoc($result))
+{
+    // elke rij (dit is een album) wordt aan de array 'albums' toegevoegd.
+    $albums[] = $row;
+}
 
+mysqli_close($db);
+
+$x = '';
 ?>
 
 <!DOCTYPE html>
@@ -182,21 +73,21 @@ $db->close();
         </tr>
         </thead>
         <body>
-            <?php foreach ($musicAlbums as $item) : $x++ ?>
-                <?php $_POST['id'] = $item['id']; ?>
+        <?php foreach ($albums as $album) : $x++ ?>
+            <?php $_POST['id'] = $album['id']; ?>
             <tr>
-                <td><?= $item['id'] ?></td>
-                <td><?= $item['Artist'] ?></td>
-                <td><?= $item['Track'] ?></td>
-                <td><?= $item['Album'] ?></td>
-                <td><?= $item['Year'] ?></td>
-                <td><?= $item['Views'] ?></td>
-                <td><?= $item['Length'] ?></td>
-                <td><a href="<?php echo 'detail.php?id='.$item['id'] ?>">Details</a> </td>
-                <td><a href="<?php echo 'edit.php?id='.$item['id'] ?>">Edit</a> </td>
+                <td><?= $album['id'] ?></td>
+                <td><?= $album['artist'] ?></td>
+                <td><?= $album['track'] ?></td>
+                <td><?= $album['album'] ?></td>
+                <td><?= $album['year'] ?></td>
+                <td><?= $album['views'] ?></td>
+                <td><?= $album['length'] ?></td>
+                <td><a href="<?php echo 'detail.php?id='.$album['id'] ?>">Details</a> </td>
+                <td><a href="<?php echo 'edit.php?id='.$album['id'] ?>">Edit</a> </td>
             </tr>
 
-            <?php endforeach; ?>
+        <?php endforeach; ?>
         </body>
         <tfoot>
         <tr>
@@ -204,6 +95,7 @@ $db->close();
         </tr>
         </tfoot>
     </table>
+
 </main>
 
 </body>

@@ -24,7 +24,6 @@
             <li class="menu-item"><a href="/u">Users</a></li>
             <li class="menu-item"><a href="/test.html">Test</a></li>
             <li class="menu-item"><a href="/test.html">Test</a></li>
-
         </ul>
     </nav>
 </header>
