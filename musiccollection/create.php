@@ -13,7 +13,7 @@ or die("Error: " . mysqli_connect_error());;
 //variables
 $artist = '';
 $track = '';
-$album = '';
+$album_name = '';
 $year = '';
 $views = '';
 $length = '';
@@ -36,10 +36,10 @@ if (isset($_POST['submit'])) {
     } else {
         $track = $_POST['track'];
     };
-    if (!isset($_POST['album']) || $_POST['album'] === '') {
+    if (!isset($_POST['album_name']) || $_POST['album_name'] === '') {
         $ok = false;
     } else {
-        $album = $_POST['album'];
+        $album_name = $_POST['album'];
     };
     if (!isset($_POST['year']) || $_POST['year'] === '') {
         $ok = false;
@@ -74,7 +74,7 @@ if (isset($_POST['submit'])) {
     if (empty($errors)) {
         $query = "
             INSERT INTO albums (artist, track, album, year, views, length, comments)
-            VALUES ('$artist', '$track', '$album', $year, $views, $length, '$comments')";
+            VALUES ('$artist', '$track', '$album_name', $year, $views, $length, '$comments')";
 
         $result = mysqli_query($db, $query)
         or die('Error: ' . $query);
@@ -125,7 +125,7 @@ if (isset($_POST['submit'])) {
         method="post"
         <p>Artist: <input type="text" name="artist" value='<?=htmlspecialchars($artist, ENT_QUOTES)?>'</p>
         <p>Track: <input type="text" name="track" value='<?=htmlspecialchars($track, ENT_QUOTES)?>'></p>
-        <p>Album: <input type="text" name="album" value='<?=htmlspecialchars($album, ENT_QUOTES)?>'></p>
+        <p>Album: <input type="text" name="album" value='<?=htmlspecialchars($album_name, ENT_QUOTES)?>'></p>
         <p>Year Released: <input type="text" name="year" value='<?=htmlspecialchars($year, ENT_QUOTES)?>'></p>
         <p>Spotify Plays: <input type="text" name="views" value='<?=htmlspecialchars($views, ENT_QUOTES)?>'></p>
         <p>Length: <input type="text" name="length" value='<?=htmlspecialchars($length, ENT_QUOTES)?>'></p>
@@ -157,7 +157,7 @@ if (isset($_POST['submit'])) {
             ',
             htmlspecialchars($artist, ENT_QUOTES),
             htmlspecialchars($track, ENT_QUOTES),
-            htmlspecialchars($album, ENT_QUOTES),
+            htmlspecialchars($album_name, ENT_QUOTES),
             htmlspecialchars($year, ENT_QUOTES),
             htmlspecialchars($views, ENT_QUOTES), htmlspecialchars($length, ENT_QUOTES),
             htmlspecialchars($comments, ENT_QUOTES),

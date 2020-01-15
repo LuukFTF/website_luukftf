@@ -36,7 +36,7 @@ $album =  mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
 <head>
     <meta charset="UTF-8">
     <link href="/css/main.css" type="text/css" rel="stylesheet">
@@ -86,7 +86,7 @@ $album =  mysqli_fetch_assoc($result);
             $id,
             htmlspecialchars($album['artist'], ENT_QUOTES),
             htmlspecialchars($album['track'], ENT_QUOTES),
-            htmlspecialchars($album['album'], ENT_QUOTES),
+            htmlspecialchars($album['album_name'], ENT_QUOTES),
             htmlspecialchars($album['year'], ENT_QUOTES),
             htmlspecialchars($album['views'], ENT_QUOTES),
             htmlspecialchars($album['length'], ENT_QUOTES),

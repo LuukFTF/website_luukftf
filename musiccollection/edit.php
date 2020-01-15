@@ -6,119 +6,123 @@ if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
     header('location: index.php');
 }
 
-
-//Multi dimensional array with the music collection data
-$x = 0;
-$listOrder = ['id', 'Artist', 'Album', 'Year', 'Track', 'Views', 'Length'];
-$musicAlbums = [
-    [
-        'id' => 0,
-        'Artist' => 'Rick Astley',
-        'Track' => 'Never Gonna Give You Up',
-        'Album' => 'You Need Somebody',
-        'Year' => 1987,
-        'Views' => 200000000,
-        'Length' => 3,
-    ],
-    [
-        'id' => 1,
-        'Artist' => 'Foster The People',
-        'Track' => 'Pumped Up Kicks',
-        'Album' => 'Torches',
-        'Year' => 2011,
-        'Views' => 400000000,
-        'Length' => 4,
-    ],
-    [
-        'id' => 2,
-        'Artist' => "Smash Mouth",
-        'Track' => "All Star",
-        'Album' => "Astro Lounge",
-        'Year' => 1999,
-        'Views' => 480000000,
-        'Length' => 3,
-    ],
-    [
-        'id' => 3,
-        'Artist' => "Vektroid",
-        'Track' => "Macintosh Plus",
-        'Album' => "Floral Shoppe",
-        'Year' => 2011,
-        'Views' => 3000000,
-        'Length' => 7,
-    ],
-    [
-        'id' => 4,
-        'Artist' => "Shanguy",
-        'Track' => "King of the Jungle",
-        'Album' => "King of the Jungle",
-        'Year' => 2018,
-        'Views' => 11000000,
-        'Length' => 2.7,
-    ],
-    [
-        'id' => 5,
-        'Artist' => "333ak",
-        'Track' => "Void",
-        'Album' => "Droned Adventures",
-        'Year' => 2019,
-        'Views' => "<1000",
-        'Length' => 3.3,
-    ],
-    [
-        'id' => 6,
-        'Artist' => "Muse",
-        'Track' => "Psycho",
-        'Album' => "Drones",
-        'Year' => 2015,
-        'Views' => "123000000",
-        'Length' => 5.3,
-    ],
-    [
-        'id' => 7,
-        'Artist' => "Avicii",
-        'Track' => "The Nights",
-        'Album' => "The Nights",
-        'Year' => 2014,
-        'Views' => "500000000",
-        'Length' => 2.9,
-    ],
-    [
-        'id' => 8,
-        'Artist' => "Joost",
-        'Track' => "Joost Klein 2",
-        'Album' => "1983",
-        'Year' => 2019,
-        'Views' => "800000",
-        'Length' => 2.1,
-    ],
-    [
-        'id' => 9,
-        'Artist' => "MGMT",
-        'Track' => "Electric Feel",
-        'Album' => "Oracular Spectacular",
-        'Year' => 2007,
-        'Views' => "300000000",
-        'Length' => 3.8,
-    ],
-    [
-        'id' => 10,
-        'Artist' => "De Staat",
-        'Track' => "Tie Me Down",
-        'Album' => "Bubble Gum",
-        'Year' => 2019,
-        'Views' => "700000",
-        'Length' => 2.1,
-    ],
-];
-
-$artist = $musicAlbums[$id]['Artist'];
-$track = $musicAlbums[$id]['Track'];
-$album= $musicAlbums[$id]['Album'];
-$year = $musicAlbums[$id]['Year'];
-$views = $musicAlbums[$id]['Views'];
-$length = $musicAlbums[$id]['Length'];
+//variables
+$artist = '';
+$track = '';
+$album_name = '';
+$year = '';
+$views = '';
+$length = '';
 $comments = '';
+$tc = '';
+
+$ok = '';
+$result = '';
+
+
+//sql database
+
+if(!isset($_GET['id'])) {
+    echo 'SQL ERROR NO ID IN URL';
+}
+
+$dbConnection =  mysqli_connect(
+    'localhost',
+    'root',
+    '',
+    'musiccolletion');
+
+$id = $_GET['id'];
+
+$query = "
+SELECT * 
+FROM albums 
+WHERE id=$id
+";
+
+$result = mysqli_query($dbConnection, $query)
+or die('Error in query: '.$query);
+
+$album =  mysqli_fetch_assoc($result);
+
+
+
+
+
+
+
+
+
+//variable setting from POST_GET
+if (isset($_POST['submit'])) {
+    $ok = true;
+
+    if (!isset($_POST['artist']) || $_POST['artist'] === '') {
+        $ok = false;
+    } else {
+        $artist = $_POST['artist'];
+    };
+    if (!isset($_POST['track']) || $_POST['track'] === '') {
+        $ok = false;
+    } else {
+        $track = $_POST['track'];
+    };
+    if (!isset($_POST['album_name']) || $_POST['album_name'] === '') {
+        $ok = false;
+    } else {
+        $album_name = $_POST['album_name'];
+    };
+    if (!isset($_POST['year']) || $_POST['year'] === '') {
+        $ok = false;
+    } else {
+        $year = $_POST['year'];
+    };
+    if (!isset($_POST['views']) || $_POST['views'] === '') {
+        $ok = false;
+    } else {
+        $views = $_POST['views'];
+    };
+    if (!isset($_POST['length']) || $_POST['length'] === '') {
+        $ok = false;
+    } else {
+        $length = $_POST['length'];
+    };
+    if (!isset($_POST['comments']) || $_POST['comments'] === '') {
+        $ok = false;
+    } else {
+        $comments = $_POST['comments'];
+    };
+    if (!isset($_POST['tc']) || $_POST['tc'] === '') {
+        $ok = false;
+    } else {
+        $tc = $_POST['tc'];
+    };
+}
+
+
+$result2 = '';
+$query2 = '';
+
+if (isset($_POST['submit'])) {
+
+    if (empty($errors)) {
+        $query2 = "UPDATE albums
+                  SET artist = '$artist', track = '$track', album_name = '$album_name', year = '$year', length = '$length', comments = '$comments'
+                  WHERE id = '$id'";
+
+        $result2 = mysqli_query($dbConnection, $query2)
+        or die('Error: ' . $query2);
+    }
+
+    if ($result2) {
+        echo 'Updated Successfully!';
+        exit;
+    } else {
+        $errors[] = 'Oepsie Woopsie Database Qwerie: ' . mysqli_error($db);
+    }
+
+    mysqli_close($db);
+}
 
 ?>
 
@@ -153,15 +157,15 @@ $comments = '';
     <form
         action=""
         method="post"
-    <p>Artist: <input type="text" name="artist" value='<?=htmlspecialchars($artist, ENT_QUOTES)?>'</p>
-    <p>Track: <input type="text" name="track" value='<?=htmlspecialchars($track, ENT_QUOTES)?>'></p>
-    <p>Album: <input type="text" name="album" value='<?=htmlspecialchars($album, ENT_QUOTES)?>'></p>
-    <p>Year Released: <input type="text" name="year" value='<?=htmlspecialchars($year, ENT_QUOTES)?>'></p>
-    <p>Spotify Plays: <input type="text" name="views" value='<?=htmlspecialchars($views, ENT_QUOTES)?>'></p>
-    <p>Length: <input type="text" name="length" value='<?=htmlspecialchars($length, ENT_QUOTES)?>'></p>
-    <p>Comments: <textarea name="comments"><?=htmlspecialchars($comments, ENT_QUOTES)?></textarea></p>
-    <p><input type="checkbox" name="tc" value="ok" value='<?=htmlspecialchars($tc, ENT_QUOTES)?>'> I accept the terms &amp; conditions </p>
-    <input type="submit" name="submit" value="Add Track">
+    <p>Artist: <input type="text" name="artist" value='<?=htmlspecialchars($album['artist'], ENT_QUOTES)?>'</p>
+    <p>Track: <input type="text" name="track" value='<?=htmlspecialchars($album['track'], ENT_QUOTES)?>'></p>
+    <p>Album: <input type="text" name="album_name" value='<?=htmlspecialchars($album['album_name'], ENT_QUOTES)?>'></p>
+    <p>Year Released: <input type="text" name="year" value='<?=htmlspecialchars($album['year'], ENT_QUOTES)?>'></p>
+    <p>Spotify Plays: <input type="text" name="views" value='<?=htmlspecialchars($album['views'], ENT_QUOTES)?>'></p>
+    <p>Length: <input type="text" name="length" value='<?=htmlspecialchars($album['length'], ENT_QUOTES)?>'></p>
+    <p>Comments: <textarea name="comments"><?=htmlspecialchars($album['comments'], ENT_QUOTES)?></textarea></p>
+    <p><input type="checkbox" name="tc" value="ok" value='<?=htmlspecialchars($album['date_created'], ENT_QUOTES)?>'> I accept the terms &amp; conditions </p>
+    <input type="submit" name="submit" value="Change Track">
     </form>
 
 
@@ -181,14 +185,17 @@ $comments = '';
             <h2>%s Plays</h2>
             <p>Length</p>
             <h2>%s Minutes</h2>
+            <p>Date Created</p>
+            <h2>%s</h2>
             ',
             $id,
-            htmlspecialchars($musicAlbums[$id]['Artist'], ENT_QUOTES),
-            htmlspecialchars($musicAlbums[$id]['Track'], ENT_QUOTES),
-            htmlspecialchars($musicAlbums[$id]['Album'], ENT_QUOTES),
-            htmlspecialchars($musicAlbums[$id]['Year'], ENT_QUOTES),
-            htmlspecialchars($musicAlbums[$id]['Views'], ENT_QUOTES),
-            htmlspecialchars($musicAlbums[$id]['Length'], ENT_QUOTES)
+            htmlspecialchars($album['artist'], ENT_QUOTES),
+            htmlspecialchars($album['track'], ENT_QUOTES),
+            htmlspecialchars($album['album_name'], ENT_QUOTES),
+            htmlspecialchars($album['year'], ENT_QUOTES),
+            htmlspecialchars($album['views'], ENT_QUOTES),
+            htmlspecialchars($album['length'], ENT_QUOTES),
+            htmlspecialchars($album['date_created'], ENT_QUOTES)
         ); ?>
     </div>
 
