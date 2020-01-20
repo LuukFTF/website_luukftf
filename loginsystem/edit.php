@@ -175,8 +175,8 @@ if (isset($_POST['submit'])) {
 
 <main class="main">
     <form
-            action=""
-            method="post"
+        action=""
+        method="post"
     <p>Customer ID: <input type="text" name="id_customer" value='<?=htmlspecialchars($reservation['id_customer'], ENT_QUOTES)?>'</p>
     <p>E-Mail: <input type="text" name="email" value='<?=htmlspecialchars($reservation['email'], ENT_QUOTES)?>'></p>
     <p>Massage type: <input type="text" name="massage_type" value='<?=htmlspecialchars($reservation['massage_type'], ENT_QUOTES)?>'></p>

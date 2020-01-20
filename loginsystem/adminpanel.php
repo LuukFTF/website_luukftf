@@ -8,18 +8,18 @@ $db =  mysqli_connect(
 
 $query = "
 SELECT * 
-FROM reservations 
+FROM customer_data 
 ";
 
 $result = mysqli_query($db, $query)
 or die('Error '.mysqli_error($db).' with query '.$query);
 
-$reservations = [];
+$users = [];
 
 while($row = mysqli_fetch_assoc($result))
 {
     // elke rij (dit is een album) wordt aan de array 'albums' toegevoegd.
-    $reservations[] = $row;
+    $users[] = $row;
 }
 
 mysqli_close($db);
@@ -64,12 +64,12 @@ $x = '';
         <tr>
             <th>#</th>
             <th>Customer ID</th>
+            <th>Username</th>
             <th>E-Mail</th>
-            <th>Massage Type</th>
-            <th>Date</th>
-            <th>Begin Time</th>
-            <th>Ending Time</th>
-            <th>Status</th>
+            <th>Password</th>
+            <th>Role</th>
+            <th>Auth Level</th>
+            <th>Last Name</th>
             <th>Customer Message</th>
             <th>Moderator Message</th>
             <th>Date Created</th>
@@ -77,23 +77,24 @@ $x = '';
         </tr>
         </thead>
         <body>
-        <?php foreach ($reservations as $reservation) : $x++ ?>
-            <?php $_POST['id'] = $reservation['id']; ?>
+        <?php foreach ($users as $user) : $x++ ?>
+            <?php $_POST['id'] = $user['id']; ?>
             <tr>
-                <td><?= $reservation['id'] ?></td>
-                <td><?= $reservation['id_customer'] ?></td>
-                <td><?= $reservation['email'] ?></td>
-                <td><?= $reservation['massage_type'] ?></td>
-                <td><?= $reservation['date'] ?></td>
-                <td><?= $reservation['begin_time'] ?></td>
-                <td><?= $reservation['ending_time'] ?></td>
-                <td><?= $reservation['status'] ?></td>
-                <td><?= $reservation['message_customer'] ?></td>
-                <td><?= $reservation['message_moderator'] ?></td>
-                <td><?= $reservation['date_created'] ?></td>
-                <td><?= $reservation['date_updated'] ?></td>
-                <td><a href="<?php echo 'detail.php?id='.$reservation['id'] ?>">Details</a> </td>
-                <td><a href="<?php echo 'edit.php?id='.$reservation['id'] ?>">Edit</a> </td>
+                <td><?= $user['id'] ?></td>
+                <td><?= $user['customer_id'] ?></td>
+                <td><?= $user['username'] ?></td>
+                <td><?= $user['email'] ?></td>
+                <td><?= $user['password'] ?></td>
+                <td><?= $user['role'] ?></td>
+                <td><?= $user['auth_level'] ?></td>
+                <td><?= $user['last_name'] ?></td>
+                <td><?= $user['phone_number'] ?></td>
+                <td><?= $user['birthdate'] ?></td>
+                <td><?= $user['date_created'] ?></td>
+                <td><?= $user['date_updated'] ?></td>
+                <td><?= $user['last_online'] ?></td>
+                <td><a href="<?php echo 'account.php?id='.$user['id'] ?>">Details</a> </td>
+                <td><a href="<?php echo 'edit.php?id='.$user['id'] ?>">Edit</a> </td>
             </tr>
 
         <?php endforeach; ?>

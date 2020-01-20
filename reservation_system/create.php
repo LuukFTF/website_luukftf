@@ -75,16 +75,6 @@ if (isset($_POST['submit'])) {
     } else {
         $message_moderator = $_POST['message_moderator'];
     };
-    if (!isset($_POST['date_created']) || $_POST['date_created'] === '') {
-        $ok = false;
-    } else {
-        $date_created = $_POST['date_created'];
-    };
-    if (!isset($_POST['date_updated']) || $_POST['date_updated'] === '') {
-        $ok = false;
-    } else {
-        $date_updated = $_POST['date_updated'];
-    };
     if (!isset($_POST['tc']) || $_POST['tc'] === '') {
         $ok = false;
     } else {
