@@ -130,7 +130,7 @@ if (isset($_POST['submit'])) {
                   WHERE id = '$id'
                   ";
 
-        $result2 = mysqli_query($dbConnection, $query2)
+        $result2 = mysqli_query($dbConnection, $query2)o
         or die('Error: ' . $query2);
     }
 

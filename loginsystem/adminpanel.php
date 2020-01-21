@@ -36,23 +36,8 @@ $x = '';
     <title>LuukFTF's Website</title>
 </head>
 <body>
-<header class="header">
-    <nav>
-        <ul class="menu">
-            <h1 class="logo">LuukFTF</h1>
-            <li class="menu-item"><a href="/home.html">Home</a></li>
-            <li class="menu-item"><a class="linkto" href="#">About</a></li>
-            <li class="menu-item"><a href="/social.html">Social Links</a></li>
-            <li class="menu-item"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">News</a></li>
-            <li class="menu-item"><a id="contact" href="#">Contact</a></li>
-            <li class="menu-item"><a href="/sandbox.php">Sandbox</a></li>
-            <li class="menu-item"><a href="/blog">Blog</a></li>
-            <li class="menu-item"><a href="/test.html">Test</a></li>
-            <li class="menu-item"><a href="/test.html">Test</a></li>
-            <li class="menu-item"><a href="/test.html">Test</a></li>
-        </ul>
-    </nav>
-</header>
+<!--header-->
+<?php include '../header.php'; ?>
 
 <h1></h1>
 
@@ -69,11 +54,13 @@ $x = '';
             <th>Password</th>
             <th>Role</th>
             <th>Auth Level</th>
+            <th>Name</th>
             <th>Last Name</th>
-            <th>Customer Message</th>
-            <th>Moderator Message</th>
+            <th>Phone Number</th>
+            <th>Birthdate</th>
             <th>Date Created</th>
             <th>Date Update</th>
+            <th>Last Online</th>
         </tr>
         </thead>
         <body>
@@ -87,13 +74,14 @@ $x = '';
                 <td><?= $user['password'] ?></td>
                 <td><?= $user['role'] ?></td>
                 <td><?= $user['auth_level'] ?></td>
+                <td><?= $user['name'] ?></td>
                 <td><?= $user['last_name'] ?></td>
                 <td><?= $user['phone_number'] ?></td>
                 <td><?= $user['birthdate'] ?></td>
                 <td><?= $user['date_created'] ?></td>
                 <td><?= $user['date_updated'] ?></td>
                 <td><?= $user['last_online'] ?></td>
-                <td><a href="<?php echo 'account.php?id='.$user['id'] ?>">Details</a> </td>
+                <td><a href="<?php echo 'account.php?id='.$user['id'] ?>">Account</a> </td>
                 <td><a href="<?php echo 'edit.php?id='.$user['id'] ?>">Edit</a> </td>
             </tr>
 

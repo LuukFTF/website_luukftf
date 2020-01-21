@@ -7,17 +7,21 @@ if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
 }
 
 //variables
-$id_customer = '';
+$id = '';
+$customer_id = '';
+$username = '';
 $email = '';
-$massage_type = '';
-$date = '';
-$begin_time = '';
-$ending_time = '';
-$status = '';
-$message_customer = '';
-$message_moderator = '';
+$password = '';
+$role = '';
+$auth_level = '';
+$name = '';
+$last_name = '';
+$phone_number = '';
+$birthdate = '';
+$woonplaats = '';
 $date_created = '';
 $date_updated = '';
+$last_online = '';
 
 $ok = '';
 $tc = '';
@@ -39,15 +43,14 @@ $id = $_GET['id'];
 
 $query = "
 SELECT * 
-FROM reservations 
+FROM customer_data 
 WHERE id=$id
 ";
 
 $result = mysqli_query($dbConnection, $query)
 or die('Error in query: '.$query);
 
-$reservation =  mysqli_fetch_assoc($result);
-
+$user =  mysqli_fetch_assoc($result);
 
 
 
@@ -56,50 +59,55 @@ $reservation =  mysqli_fetch_assoc($result);
 if (isset($_POST['submit'])) {
     $ok = true;
 
-    if (!isset($_POST['id_customer']) || $_POST['id_customer'] === '') {
+    if (!isset($_POST['customer_id']) || $_POST['customer_id'] === '') {
         $ok = false;
     } else {
-        $id_customer = $_POST['id_customer'];
+        $customer_id = $_POST['customer_id'];
+    };
+    if (!isset($_POST['username']) || $_POST['username'] === '') {
+        $ok = false;
+    } else {
+        $username = $_POST['username'];
     };
     if (!isset($_POST['email']) || $_POST['email'] === '') {
         $ok = false;
     } else {
         $email = $_POST['email'];
     };
-    if (!isset($_POST['massage_type']) || $_POST['massage_type'] === '') {
+    if (!isset($_POST['password']) || $_POST['password'] === '') {
         $ok = false;
     } else {
-        $massage_type = $_POST['massage_type'];
+        $password = $_POST['password'];
     };
-    if (!isset($_POST['date']) || $_POST['date'] === '') {
+    if (!isset($_POST['role']) || $_POST['role'] === '') {
         $ok = false;
     } else {
-        $date = $_POST['date'];
+        $role = $_POST['role'];
     };
-    if (!isset($_POST['begin_time']) || $_POST['begin_time'] === '') {
+    if (!isset($_POST['auth_level']) || $_POST['auth_level'] === '') {
         $ok = false;
     } else {
-        $begin_time = $_POST['begin_time'];
+        $auth_level = $_POST['auth_level'];
     };
-    if (!isset($_POST['ending_time']) || $_POST['ending_time'] === '') {
+    if (!isset($_POST['name']) || $_POST['name'] === '') {
         $ok = false;
     } else {
-        $ending_time = $_POST['ending_time'];
+        $last_name = $_POST['name'];
     };
-    if (!isset($_POST['status']) || $_POST['status'] === '') {
+    if (!isset($_POST['last_name']) || $_POST['last_name'] === '') {
         $ok = false;
     } else {
-        $status = $_POST['status'];
+        $last_name = $_POST['last_name'];
     };
-    if (!isset($_POST['message_customer']) || $_POST['message_customer'] === '') {
+    if (!isset($_POST['phone_number']) || $_POST['phone_number'] === '') {
         $ok = false;
     } else {
-        $message_customer = $_POST['message_customer'];
+        $phone_number = $_POST['phone_number'];
     };
-    if (!isset($_POST['message_moderator']) || $_POST['message_moderator'] === '') {
+    if (!isset($_POST['birthdate']) || $_POST['birthdate'] === '') {
         $ok = false;
     } else {
-        $message_moderator = $_POST['message_moderator'];
+        $birthdate = $_POST['birthdate'];
     };
     if (!isset($_POST['date_created']) || $_POST['date_created'] === '') {
         $ok = false;
@@ -110,6 +118,21 @@ if (isset($_POST['submit'])) {
         $ok = false;
     } else {
         $date_updated = $_POST['date_updated'];
+    };
+    if (!isset($_POST['last_name']) || $_POST['last_name'] === '') {
+        $ok = false;
+    } else {
+        $last_name = $_POST['last_name'];
+    };
+    if (!isset($_POST['woonplaats']) || $_POST['woonplaats'] === '') {
+        $ok = false;
+    } else {
+        $woonplaats = $_POST['woonplaats'];
+    };
+    if (!isset($_POST['last_online']) || $_POST['last_online'] === '') {
+        $ok = false;
+    } else {
+        $last_online = $_POST['last_online'];
     };
     if (!isset($_POST['tc']) || $_POST['tc'] === '') {
         $ok = false;
@@ -126,7 +149,7 @@ if (isset($_POST['submit'])) {
 
     if (empty($errors)) {
         $query2 = "UPDATE reservations
-                  SET id_customer = $id_customer, email = '$email', massage_type = $massage_type, date = '$date', begin_time = '$begin_time', ending_time = '$ending_time', status = $status, message_customer = '$message_customer', message_moderator = '$message_moderator', date_created = '$date_created', date_updated = '$date_updated'
+                  SET customer_id = $customer_id, username = '$username', email = $email, password = '$password', role = '$role', auth_level = '$auth_level', last_name = $last_name, phone_number = '$phone_number', birthdate = '$birthdate', woonplaats = '$woonplaats', date_created = $date_created, date_updated = '$date_updated', last_online = '$last_online'
                   WHERE id = '$id'
                   ";
 
@@ -155,41 +178,27 @@ if (isset($_POST['submit'])) {
     <title>LuukFTF's Website</title>
 </head>
 <body>
-<header class="header">
-    <nav>
-        <ul class="menu">
-            <h1 class="logo">LuukFTF</h1>
-            <li class="menu-item"><a href="/home.html">Home</a></li>
-            <li class="menu-item"><a class="linkto" href="#">About</a></li>
-            <li class="menu-item"><a href="/social.html">Social Links</a></li>
-            <li class="menu-item"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">News</a></li>
-            <li class="menu-item"><a id="contact" href="#">Contact</a></li>
-            <li class="menu-item"><a href="/sandbox.php">Sandbox</a></li>
-            <li class="menu-item"><a href="/blog">Blog</a></li>
-            <li class="menu-item"><a href="/test.html">Test</a></li>
-            <li class="menu-item"><a href="/test.html">Test</a></li>
-            <li class="menu-item"><a href="/test.html">Test</a></li>
-        </ul>
-    </nav>
-</header>
+<!--header-->
+<?php include '../header.php'; ?>
 
 <main class="main">
     <form
         action=""
         method="post"
-    <p>Customer ID: <input type="text" name="id_customer" value='<?=htmlspecialchars($reservation['id_customer'], ENT_QUOTES)?>'</p>
-    <p>E-Mail: <input type="text" name="email" value='<?=htmlspecialchars($reservation['email'], ENT_QUOTES)?>'></p>
-    <p>Massage type: <input type="text" name="massage_type" value='<?=htmlspecialchars($reservation['massage_type'], ENT_QUOTES)?>'></p>
-    <p>Date: <input type="text" name="date" value='<?=htmlspecialchars($reservation['date'], ENT_QUOTES)?>'></p>
-    <p>Begin Time: <input type="time" name="begin_time" value='<?=htmlspecialchars($reservation['begin_time'], ENT_QUOTES)?>'></p>
-    <p>Ending Time: <input type="time" name="ending_time" value='<?=htmlspecialchars($reservation['ending_time'], ENT_QUOTES)?>'></p>
-    <p>Status: <input type="text" name="status" value='<?=htmlspecialchars($reservation['status'], ENT_QUOTES)?>'></p>
-    <p>Customer Message: <textarea name="message_customer"><?=htmlspecialchars($reservation['message_customer'], ENT_QUOTES)?></textarea></p>
-    <p>Moderator Message: <textarea name="message_moderator"><?=htmlspecialchars($reservation['message_moderator'], ENT_QUOTES)?></textarea></p>
-    <p>Date Updated: <input type="text" name="date_created" value='<?=htmlspecialchars($reservation['date_created'], ENT_QUOTES)?>'></p>
-    <p>Date Updated: <input type="text" name="date_updated" value='<?=htmlspecialchars($reservation['date_updated'], ENT_QUOTES)?>'></p>
+    <p>Customer ID: <input type="text" name="id_customer" value='<?=htmlspecialchars($user['customer_id'], ENT_QUOTES)?>'</p>
+    <p>User: <input type="text" name="email" value='<?=htmlspecialchars($user['username'], ENT_QUOTES)?>'></p>
+    <p>E-Email: <input type="text" name="massage_type" value='<?=htmlspecialchars($user['email'], ENT_QUOTES)?>'></p>
+    <p>Password: <input type="text" name="date" value='<?=htmlspecialchars($user['password'], ENT_QUOTES)?>'></p>
+    <p>Role: <input type="text" name="begin_time" value='<?=htmlspecialchars($user['role'], ENT_QUOTES)?>'></p>
+    <p>Auth Level: <input type="text" name="ending_time" value='<?=htmlspecialchars($user['auth_level'], ENT_QUOTES)?>'></p>
+    <p>Phone Number: <input type="text" name="status" value='<?=htmlspecialchars($user['phone_number'], ENT_QUOTES)?>'></p>
+    <p>Birthdate: <input type="text" name="status" value='<?=htmlspecialchars($user['birthdate'], ENT_QUOTES)?>'></p>
+    <p>Woonplaats: <input type="text" name="status" value='<?=htmlspecialchars($user['woonplaats'], ENT_QUOTES)?>'></p>
+    <p>Date Created: <input type="text" name="date_created" value='<?=htmlspecialchars($user['date_created'], ENT_QUOTES)?>'></p>
+    <p>Date Updated: <input type="text" name="date_updated" value='<?=htmlspecialchars($user['date_updated'], ENT_QUOTES)?>'></p>
+    <p>Last Online: <input type="text" name="date_updated" value='<?=htmlspecialchars($user['last_online'], ENT_QUOTES)?>'></p>
     <p><input type="checkbox" name="tc" value="ok" value='<?=htmlspecialchars($tc, ENT_QUOTES)?>'> I accept the terms &amp; conditions </p>
-    <input type="submit" name="submit" value="Add Track">
+    <input type="submit" name="submit" value="Apply Changes">
     </form>
 
     <div class="container">
@@ -198,40 +207,42 @@ if (isset($_POST['submit'])) {
             <h2>%s</h2>
             <p>Customer ID</p>
             <h2>%s</h2>
+            <p>Username</p>
+            <h2>%s</h2>
             <p>E-Mail</p>
             <h2>%s</h2>
-            <p>Massage Type</p>
+            <p>Password</p>
             <h2>%s</h2>
-            <p>Date</p>
+            <p>Role</p>
             <h2>%s</h2>
-            <p>Begin Time</p>
+            <p>Auth Level</p>
             <h2>%s</h2>
-            <p>Ending Time</p>
+            <p>Lastname</p>
             <h2>%s</h2>
-            <p>Status</p>
+            <p>Phonenumber</p>
             <h2>%s</h2>
-            <p>Customer Message</p>
-            <h2>%s</h2>
-            <p>Moderator Message</p>
+            <p>Birthdate</p>
             <h2>%s</h2>
             <p>Date Created</p>
             <h2>%s</h2>
             <p>Date Update</p>
             <h2>%s</h2>
+            <p>Last Online</p>
+            <h2>%s</h2>
             ',
             $id,
-            htmlspecialchars($reservation['id_customer'], ENT_QUOTES),
-            htmlspecialchars($reservation['email'], ENT_QUOTES),
-            htmlspecialchars($reservation['massage_type'],ENT_QUOTES),
-            htmlspecialchars($reservation['date'], ENT_QUOTES),
-            htmlspecialchars($reservation['begin_time'], ENT_QUOTES),
-            htmlspecialchars($reservation['ending_time'], ENT_QUOTES),
-            htmlspecialchars($reservation['status'], ENT_QUOTES),
-            htmlspecialchars($reservation['message_customer'], ENT_QUOTES),
-            htmlspecialchars($reservation['message_moderator'], ENT_QUOTES),
-            htmlspecialchars($reservation['date_created'], ENT_QUOTES),
-            htmlspecialchars($reservation['date_updated'], ENT_QUOTES)
-
+            htmlspecialchars($user['customer_id'], ENT_QUOTES),
+            htmlspecialchars($user['username'],ENT_QUOTES),
+            htmlspecialchars($user['email'], ENT_QUOTES),
+            htmlspecialchars($user['password'], ENT_QUOTES),
+            htmlspecialchars($user['role'], ENT_QUOTES),
+            htmlspecialchars($user['auth_level'], ENT_QUOTES),
+            htmlspecialchars($user['last_name'], ENT_QUOTES),
+            htmlspecialchars($user['phone_number'], ENT_QUOTES),
+            htmlspecialchars($user['birthdate'], ENT_QUOTES),
+            htmlspecialchars($user['date_created'], ENT_QUOTES),
+            htmlspecialchars($user['date_updated'], ENT_QUOTES),
+            htmlspecialchars($user['last_online'], ENT_QUOTES)
         ); ?>
     </div>
 

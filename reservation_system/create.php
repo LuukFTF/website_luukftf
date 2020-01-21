@@ -114,42 +114,27 @@ if (isset($_POST['submit'])) {
     <title>LuukFTF's Website</title>
 </head>
 <body>
-<header class="header">
-    <nav>
-        <ul class="menu">
-            <h1 class="logo">LuukFTF</h1>
-            <li class="menu-item"><a href="/home.html">Home</a></li>
-            <li class="menu-item"><a class="linkto" href="#">About</a></li>
-            <li class="menu-item"><a href="/social.html">Social Links</a></li>
-            <li class="menu-item"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">News</a></li>
-            <li class="menu-item"><a id="contact" href="#">Contact</a></li>
-            <li class="menu-item"><a href="/sandbox.php">Sandbox</a></li>
-            <li class="menu-item"><a href="/blog">Blog</a></li>
-            <li class="menu-item"><a href="/test.html">Test</a></li>
-            <li class="menu-item"><a href="/test.html">Test</a></li>
-            <li class="menu-item"><a href="/test.html">Test</a></li>
-        </ul>
-    </nav>
-</header>
+<!--header-->
+<?php include '../header.php'; ?>
 
 
 <main class="main">
     <form
         action=""
         method="post"
-        <p>Customer ID: <input type="text" name="id_customer" value='<?=htmlspecialchars($id_customer, ENT_QUOTES)?>'</p>
-        <p>E-Mail: <input type="text" name="email" value='<?=htmlspecialchars($email, ENT_QUOTES)?>'></p>
-        <p>Massage type: <input type="text" name="massage_type" value='<?=htmlspecialchars($massage_type, ENT_QUOTES)?>'></p>
-        <p>Date: <input type="date" name="date" value='<?=htmlspecialchars($date, ENT_QUOTES)?>'></p>
-        <p>Begin Time: <input type="time" name="begin_time" value='<?=htmlspecialchars($begin_time, ENT_QUOTES)?>'></p>
-        <p>Ending Time: <input type="time" name="ending_time" value='<?=htmlspecialchars($ending_time, ENT_QUOTES)?>'></p>
-        <p>Status: <input type="text" name="status" value='<?=htmlspecialchars($status, ENT_QUOTES)?>'></p>
-        <p>Customer Message: <textarea name="message_customer"><?=htmlspecialchars($message_customer, ENT_QUOTES)?></textarea></p>
-        <p>Moderator Message: <textarea name="message_moderator"><?=htmlspecialchars($message_moderator, ENT_QUOTES)?></textarea></p>
-        <p>Date Created: <input type="date" name="date_created" value='<?=htmlspecialchars($date_created, ENT_QUOTES)?>'></p>
-        <p>Date Updated: <input type="date" name="date_updated" value='<?=htmlspecialchars($date_updated, ENT_QUOTES)?>'></p>
+        <p>Customer ID: <input type="text" name="id_customer" value='<?=htmlspecialchars($reservation['id_customer'], ENT_QUOTES)?>'</p>
+        <p>E-Mail: <input type="text" name="email" value='<?=htmlspecialchars($reservation['email'], ENT_QUOTES)?>'></p>
+        <p>Massage type: <input type="text" name="massage_type" value='<?=htmlspecialchars($reservation['massage_type'], ENT_QUOTES)?>'></p>
+        <p>Date: <input type="text" name="date" value='<?=htmlspecialchars($reservation['date'], ENT_QUOTES)?>'></p>
+        <p>Begin Time: <input type="time" name="begin_time" value='<?=htmlspecialchars($reservation['begin_time'], ENT_QUOTES)?>'></p>
+        <p>Ending Time: <input type="time" name="ending_time" value='<?=htmlspecialchars($reservation['ending_time'], ENT_QUOTES)?>'></p>
+        <p>Status: <input type="text" name="status" value='<?=htmlspecialchars($reservation['status'], ENT_QUOTES)?>'></p>
+        <p>Customer Message: <textarea name="message_customer"><?=htmlspecialchars($reservation['message_customer'], ENT_QUOTES)?></textarea></p>
+        <p>Moderator Message: <textarea name="message_moderator"><?=htmlspecialchars($reservation['message_moderator'], ENT_QUOTES)?></textarea></p>
+        <p>Date Updated: <input type="text" name="date_created" value='<?=htmlspecialchars($reservation['date_created'], ENT_QUOTES)?>'></p>
+        <p>Date Updated: <input type="text" name="date_updated" value='<?=htmlspecialchars($reservation['date_updated'], ENT_QUOTES)?>'></p>
         <p><input type="checkbox" name="tc" value="ok" value='<?=htmlspecialchars($tc, ENT_QUOTES)?>'> I accept the terms &amp; conditions </p>
-        <input type="submit" name="submit" value="Add Track">
+        <input type="submit" name="submit" value="Register Account">
     </form>
 
 

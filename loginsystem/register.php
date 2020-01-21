@@ -18,13 +18,14 @@ $email = '';
 $password = '';
 $role = '';
 $auth_level = '';
+$name = '';
 $last_name = '';
 $phone_number = '';
 $birthdate = '';
 $woonplaats = '';
 $date_created = '';
 $date_updated = '';
-$last_name = '';
+$last_online = '';
 
 $tc = '';
 
@@ -62,6 +63,11 @@ if (isset($_POST['submit'])) {
     } else {
         $auth_level = $_POST['auth_level'];
     };
+    if (!isset($_POST['name']) || $_POST['name'] === '') {
+        $ok = false;
+    } else {
+        $last_name = $_POST['name'];
+    };
     if (!isset($_POST['last_name']) || $_POST['last_name'] === '') {
         $ok = false;
     } else {
@@ -97,6 +103,11 @@ if (isset($_POST['submit'])) {
     } else {
         $woonplaats = $_POST['woonplaats'];
     };
+    if (!isset($_POST['last_online']) || $_POST['last_online'] === '') {
+        $ok = false;
+    } else {
+        $last_online = $_POST['last_online'];
+    };
     if (!isset($_POST['tc']) || $_POST['tc'] === '') {
         $ok = false;
     } else {
@@ -109,8 +120,8 @@ if (isset($_POST['submit'])) {
 
     if (empty($errors)) {
         $query = "
-            INSERT INTO reservations (username, email, password, last_name, birthdate, woonplaats)
-            VALUES ($id_customer, '$email', $massage_type, '$date', '$begin_time', '$ending_time', $status, '$message_customer', '$message_moderator', '$date_created', '$date_updated')";
+            INSERT INTO customer_data (username, email, password, phone_number, name, last_name, birthdate, woonplaats)
+            VALUES ('$username', '$email', '$password', $phone_number, '$name', '$last_name', '$birthdate', '$woonplaats')";
 
         $result = mysqli_query($db, $query)
         or die('Error: ' . $query);
@@ -133,7 +144,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <link href="/css/main.css" type="text/css" rel="stylesheet">
     <link href="music_collection.css" type="text/css" rel="stylesheet">
-    <title>LuukFTF's Website</title>
+    <title>Account Register Page</title>
 </head>
 <body>
 <header class="header">
@@ -156,25 +167,23 @@ if (isset($_POST['submit'])) {
 
 
 <main class="main">
+
+    <h1>Account Register Page</h1>
+
     <form
-        action=""
-        method="post"
-    <p>Customer ID: <input type="text" name="id_customer" value='<?=htmlspecialchars($id_customer, ENT_QUOTES)?>'</p>
-    <p>E-Mail: <input type="text" name="email" value='<?=htmlspecialchars($email, ENT_QUOTES)?>'></p>
-    <p>Massage type: <input type="text" name="massage_type" value='<?=htmlspecialchars($massage_type, ENT_QUOTES)?>'></p>
-    <p>Date: <input type="date" name="date" value='<?=htmlspecialchars($date, ENT_QUOTES)?>'></p>
-    <p>Begin Time: <input type="time" name="begin_time" value='<?=htmlspecialchars($begin_time, ENT_QUOTES)?>'></p>
-    <p>Ending Time: <input type="time" name="ending_time" value='<?=htmlspecialchars($ending_time, ENT_QUOTES)?>'></p>
-    <p>Status: <input type="text" name="status" value='<?=htmlspecialchars($status, ENT_QUOTES)?>'></p>
-    <p>Customer Message: <textarea name="message_customer"><?=htmlspecialchars($message_customer, ENT_QUOTES)?></textarea></p>
-    <p>Moderator Message: <textarea name="message_moderator"><?=htmlspecialchars($message_moderator, ENT_QUOTES)?></textarea></p>
-    <p>Date Created: <input type="date" name="date_created" value='<?=htmlspecialchars($date_created, ENT_QUOTES)?>'></p>
-    <p>Date Updated: <input type="date" name="date_updated" value='<?=htmlspecialchars($date_updated, ENT_QUOTES)?>'></p>
-    <p><input type="checkbox" name="tc" value="ok" value='<?=htmlspecialchars($tc, ENT_QUOTES)?>'> I accept the terms &amp; conditions </p>
-    <input type="submit" name="submit" value="Add Track">
+            action=""
+            method="post"
+    <p>Username: <input type="text" name="username" value='<?=$username?>'></p>
+    <p>Password: <input type="password" name="password" value='<?=$password?>'></p>
+    <p>E-Mail: <input type="text" name="email" value='<?=$email?>'></p>
+    <p>Name: <input type="text" name="name" value='<?=$name?>'></p>
+    <p>Last Name: <input type="text" name="last_name" value='<?=$last_name?>'></p>
+    <p>Phone Number: <input type="text" name="phone_number" value='<?=$phone_number?>'></p>
+    <p>Birthdate: <input type="date" name="birthdate" value='<?=$birthdate?>'></p>
+    <p>Woonplaats: <input type="text" name="woonplaats" value='<?=$woonplaats?>'></p>
+    <p><input type="checkbox" name="tc" value="ok" value='<?=$tc?>'> I accept the terms &amp; conditions </p>
+    <input type="submit" name="submit" value="Register">
     </form>
-
-
 
 
 </main>
