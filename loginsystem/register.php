@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
     if (!isset($_POST['name']) || $_POST['name'] === '') {
         $ok = false;
     } else {
-        $last_name = $_POST['name'];
+        $name = $_POST['name'];
     };
     if (!isset($_POST['last_name']) || $_POST['last_name'] === '') {
         $ok = false;
