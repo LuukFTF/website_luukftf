@@ -149,7 +149,7 @@ if (isset($_POST['submit'])) {
 
     if (empty($errors)) {
         $query2 = "UPDATE reservations
-                  SET customer_id = $customer_id, username = '$username', email = $email, password = '$password', role = '$role', auth_level = '$auth_level', last_name = $last_name, phone_number = '$phone_number', birthdate = '$birthdate', woonplaats = '$woonplaats', date_created = $date_created, date_updated = '$date_updated', last_online = '$last_online'
+                  SET customer_id = $customer_id, username = '$username', email = $email, password = '$password', role = '$role', auth_level = '$auth_level', name = $name, last_name = $last_name, phone_number = '$phone_number', birthdate = '$birthdate', woonplaats = '$woonplaats', date_created = $date_created, date_updated = '$date_updated', last_online = '$last_online'
                   WHERE id = '$id'
                   ";
 
@@ -217,6 +217,8 @@ if (isset($_POST['submit'])) {
             <h2>%s</h2>
             <p>Auth Level</p>
             <h2>%s</h2>
+            <p>Name</p>
+            <h2>%s</h2>
             <p>Lastname</p>
             <h2>%s</h2>
             <p>Phonenumber</p>
@@ -237,6 +239,7 @@ if (isset($_POST['submit'])) {
             htmlspecialchars($user['password'], ENT_QUOTES),
             htmlspecialchars($user['role'], ENT_QUOTES),
             htmlspecialchars($user['auth_level'], ENT_QUOTES),
+            htmlspecialchars($user['name'], ENT_QUOTES),
             htmlspecialchars($user['last_name'], ENT_QUOTES),
             htmlspecialchars($user['phone_number'], ENT_QUOTES),
             htmlspecialchars($user['birthdate'], ENT_QUOTES),
